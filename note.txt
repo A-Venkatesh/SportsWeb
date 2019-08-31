@@ -1,0 +1,6 @@
+mongoimport -d ipl -c matches –-type CSV --headerline –-file matches.csv 
+mongoimport -d ipl -c deliveries –-type CSV --headerline –-file deliveries.csv
+
+
+https://tecadmin.net/change-mongodb-default-data-path/
+

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 
 
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatSidenavModule
+    MatSidenavModule,
+    SlimLoadingBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

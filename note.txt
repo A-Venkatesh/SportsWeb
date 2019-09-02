@@ -10,3 +10,5 @@ mongoimport -d ipl -c deliveries –-type CSV --headerline –-file deliveries.c
 
 https://tecadmin.net/change-mongodb-default-data-path/
 
+
+npm install bootstrap --save

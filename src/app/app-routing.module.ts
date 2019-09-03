@@ -10,6 +10,7 @@ import { MatchEditComponent } from './match-edit/match-edit.component';
 
 
 const routes: Routes = [
+  {path: '', component: MenuComponent},
   {path: 'menu', component: MenuComponent},
   {path: 'dash', component: DashComponent},
   {path: 'error', component: ErrorPageComponent},

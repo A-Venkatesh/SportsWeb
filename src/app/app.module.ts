@@ -10,6 +10,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

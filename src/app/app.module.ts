@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -21,7 +23,8 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
     BrowserModule,
     AppRoutingModule,
     MatSidenavModule,
-    SlimLoadingBarModule
+    SlimLoadingBarModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

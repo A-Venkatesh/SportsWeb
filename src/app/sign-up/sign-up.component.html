@@ -1,20 +1,45 @@
 <div class="card">
     <div class="card-body">
-      <form>
+      <form [formGroup]="signUpForm" novalidate>
         <div class="form-group">
           <label class="col-md-4">User Name</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" 
+            formControlName="UserName" 
+            #UserName />
+        </div>
+        <div *ngIf="signUpForm.controls['UserName'].invalid && (signUpForm.controls['UserName'].dirty || signUpForm.controls['UserName'].touched)" class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['UserName'].errors.required">
+            User Name is required.
+          </div>
         </div>
         <div class="form-group">
-          <label class="col-md-4">Password</label>
-          <input type="text" class="form-control" />
+          <label class="col-md-4">Password </label>
+          <input type="text"  class="form-control" rows = 7 cols = "5"
+          formControlName="Password" 
+          #Password/>
+        </div>
+        <div *ngIf="signUpForm.controls['Password'].invalid && (signUpForm.controls['Password'].dirty || signUpForm.controls['Password'].touched)" class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['Password'].errors.required">
+            Password is required.
+          </div>
         </div>
         <div class="form-group">
           <label class="col-md-4">Confirm Password</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" 
+            formControlName="ConfirmPassword" 
+            #ConfirmPassword
+          />
+        </div>
+        <div *ngIf="signUpForm.controls['ConfirmPassword'].invalid && (signUpForm.controls['ConfirmPassword'].dirty || signUpForm.controls['ConfirmPassword'].touched)" class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['ConfirmPassword'].errors.required">
+            Confirm Password is required.
+          </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Sign-Up</button>
+          <button type="submit" class="btn btn-primary"
+          [disabled]="signUpForm.pristine || signUpForm.invalid" >
+            Submit
+          </button>
         </div>
       </form>
     </div>

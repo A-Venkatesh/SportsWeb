@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  signUpForm: FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.signUpForm = this.fb.group({
+      UserName: ['', Validators.required ],
+      Password: ['', Validators.required ],
+      ConfirmPassword: ['', Validators.required ]
+    });
+  }
+
 
   ngOnInit() {
   }

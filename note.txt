@@ -1,14 +1,18 @@
+git config --global http.sslVerify false
+git clone https://code.cognizant.com/670322/IPL-Skillathon-Project.git --branch team 
+git clone <url> --branch <branch>
+
 npm install express --save
 npm install mongoose --save
 npm install body-parser --save
 
 npm install --save @angular/material @angular/cdk @angular/animations
 
-git config --global http.sslVerify false
-
 mongoimport -d ipl -c matches –-type CSV --headerline –-file matches.csv 
 mongoimport -d ipl -c deliveries –-type CSV --headerline –-file deliveries.csv
+ net start MongoDB
 
+ net stop MongoDB
 
 https://tecadmin.net/change-mongodb-default-data-path/
 

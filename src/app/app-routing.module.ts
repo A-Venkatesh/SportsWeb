@@ -7,7 +7,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { MatchAddComponent } from './match-add/match-add.component';
 import { MatchGetComponent } from './match-get/match-get.component';
 import { MatchEditComponent } from './match-edit/match-edit.component';
-
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: '', component: MenuComponent},
@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'get', component: MatchGetComponent},
   {path: 'edit/:id', component: MatchEditComponent},
   {path: 'add', component: MatchAddComponent},
+  {path: 'registration', component: SignUpComponent},
   {path: '**', component: ErrorPageComponent}
 
 ];
@@ -28,5 +29,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routingComponents = [MenuComponent, DashComponent, ErrorPageComponent,
-  MatchAddComponent, MatchEditComponent, MatchGetComponent];
+  MatchAddComponent, MatchEditComponent, MatchGetComponent, SignUpComponent];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { SignUpService} from '..sign-up.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +10,7 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 
   signUpForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private us: SignUpService) {
     this.createForm();
   }
 
@@ -20,7 +21,9 @@ export class SignUpComponent implements OnInit {
       ConfirmPassword: ['', Validators.required ]
     });
   }
-
+  addUser(UserName, Password) {
+    this.us.addUser(UserName, Password);
+  }
 
   ngOnInit() {
   }

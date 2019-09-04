@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SignUpService} from './sign-up.service';
 
 
 
@@ -24,9 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     MatSidenavModule,
     SlimLoadingBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SignUpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-export default class Product {
+export default class User {
     UserName: string;
     Password: string;
   }

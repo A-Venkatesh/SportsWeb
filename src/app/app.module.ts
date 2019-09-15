@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 
 
 
-import {MatSidenavModule} from '@angular/material/sidenav';
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpService} from './sign-up.service';
 import { MatchsService } from './matchs.service';
+
+
 
 
 
@@ -25,7 +31,8 @@ import { MatchsService } from './matchs.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatSidenavModule,
+    MaterialModule,
+    BrowserAnimationsModule,
     SlimLoadingBarModule,
     ReactiveFormsModule,
     HttpClientModule

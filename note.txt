@@ -18,3 +18,7 @@ https://tecadmin.net/change-mongodb-default-data-path/
 
 
 npm install bootstrap --save
+
+npm init -y
+npm install express body-parser cors mongoose --save
+npm install -g nodemon

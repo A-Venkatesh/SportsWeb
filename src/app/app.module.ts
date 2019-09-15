@@ -11,6 +11,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpService} from './sign-up.service';
+import { MatchsService } from './matchs.service';
 
 
 
@@ -29,7 +30,7 @@ import { SignUpService} from './sign-up.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [SignUpService],
+  providers: [SignUpService, MatchsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

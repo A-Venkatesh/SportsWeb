@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="season">
         <th mat-header-cell *matHeaderCellDef> season</th>
@@ -39,9 +39,19 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </div> -->
+
+  <div>
+  <mat-form-field>
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+
+      <mat-option *ngFor="let year of years;" value={{year}}>{{year}}</mat-option>
+    
+    </mat-select>
+  </mat-form-field>
   </div>
-
-
+<div>
 <table class="table table-hover">
     <thead>
     <tr>
@@ -52,7 +62,9 @@
     </thead>
   
     <tbody>
-        <tr *ngFor="let match of matchs">
+        <tr *ngFor="let match of matchs;let path of Xyzpaths index as i; odd as isOdd; even as isEven"
+        [class.odd]="isOdd" 
+        [class.even]="isEven">
             <td>{{ match.season }}</td>
             <td>{{ match.city }}</td>
             <td>{{ match.date }}</td>
@@ -68,3 +80,4 @@
         </tr>
     </tbody>
   </table>
+</div>

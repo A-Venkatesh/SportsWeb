@@ -24,13 +24,24 @@ export interface PeriodicElement {
 })
 export class MatchGetComponent implements OnInit {
 
-  selected = 'All seasons';
+  selected = '';
   years: number[] = [] ;
+  teams: string[] = ['Rising Pune Supergiant','Kings XI Punjab','Royal Challengers Bangalore','Delhi Daredevils','Mumbai Indians','Sunrisers Hyderabad','Kolkata Knight Riders','Chennai Super Kings'] ;
 value = 2019;
   displayedColumns: string[] = [ 'season', 'city', 'date', 'team1', 'team2', 'winner', 'venue'];
   matchs: Match[];
   dataSource: any;
   constructor(private ps: MatchsService) { }
+
+  applyFilter(filterValue: string) {
+    console.log("check");
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  somethingChanged(){
+    console.log(this.selected);
+    
+    this.applyFilter(this.selected)
+  }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -43,15 +54,12 @@ value = 2019;
       .getMatchs()
       .subscribe((data: PeriodicElement[]) => {
         this.matchs = data;
-        console.log(this.dataSource);
+        
         this.dataSource = new MatTableDataSource<PeriodicElement>(data);
-        console.log(this.dataSource);
+     
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
           });
 
-    
-  }
-
-
+}
 }

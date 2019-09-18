@@ -10,7 +10,7 @@ import { MatchEditComponent } from './match-edit/match-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-  {path: '', component: MenuComponent},
+  {path: '', component: MatchGetComponent},
   {path: 'menu', component: MenuComponent},
   {path: 'dash', component: DashComponent},
   {path: 'error', component: ErrorPageComponent},

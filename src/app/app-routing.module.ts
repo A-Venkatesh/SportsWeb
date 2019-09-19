@@ -8,6 +8,10 @@ import { MatchAddComponent } from './match-add/match-add.component';
 import { MatchGetComponent } from './match-get/match-get.component';
 import { MatchEditComponent } from './match-edit/match-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+
+
 
 const routes: Routes = [
   {path: '', component: MatchGetComponent},
@@ -18,6 +22,14 @@ const routes: Routes = [
   {path: 'edit/:id', component: MatchEditComponent},
   {path: 'add', component: MatchAddComponent},
   {path: 'registration', component: SignUpComponent},
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
   {path: '**', component: ErrorPageComponent}
 
 ];
@@ -29,5 +41,6 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routingComponents = [MenuComponent, DashComponent, ErrorPageComponent,
-  MatchAddComponent, MatchEditComponent, MatchGetComponent, SignUpComponent];
+  MatchAddComponent, MatchEditComponent, MatchGetComponent, SignUpComponent, RegisterComponent,
+  LoginComponent];
 

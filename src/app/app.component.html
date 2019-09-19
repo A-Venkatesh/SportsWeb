@@ -38,7 +38,9 @@
     <div>
         <button mat-button [matMenuTriggerFor]="menu"  style="color: blue">Log In</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Log-In</button>
+          <button mat-menu-item *ngIf="!_authService.loggedIn()" routerLink="login">Log-In</button>
+          <button mat-menu-item *ngIf="!_authService.loggedIn()" routerLink="register">Sign-Up</button>
+          <button mat-menu-item *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Log-Out</button>
           <button mat-menu-item routerLink="registration">Sign-Up</button>
         </mat-menu>
     </div>

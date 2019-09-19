@@ -1,0 +1,97 @@
+<div>
+  <mat-form-field>
+    <mat-label>All seasons</mat-label>
+    <mat-select [(value)]="selected" (valueChange)="somethingChanged()" >
+
+      <mat-option *ngFor="let year of years;" value={{year}}>{{year}}</mat-option>
+    
+    </mat-select>
+    
+  </mat-form-field>
+  <mat-form-field>
+      <mat-label>All Teams</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="somethingChanged()" >
+  
+        <mat-option *ngFor="let team of teams;" value={{team}}>{{team}}</mat-option>
+      
+      </mat-select>
+      
+    </mat-form-field>
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+  </div>
+ <div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+
+   <ng-container matColumnDef="season">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> season</th>
+        <td mat-cell *matCellDef="let element">{{ element.season }} </td>
+      </ng-container> 
+    
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> city </th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="team1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> team1 </th>
+        <td mat-cell *matCellDef="let element"> {{element.team1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="team2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> team2 </th>
+        <td mat-cell *matCellDef="let element"> {{element.team2}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="winner">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> winner </th>
+        <td mat-cell *matCellDef="let element"> {{element.winner}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="venue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> venue </th>
+        <td mat-cell *matCellDef="let element"> {{element.venue}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;let odd = odd;" [ngClass]="{RowColor: odd}"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  
+<!-- <div>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <td>season</td>
+        <td>city</td>
+        <td>date</td><td>team1</td><td>team2</td><td>winner</td><td>venue</td>
+    </tr>
+    </thead>
+  
+    <tbody>
+        <tr *ngFor="let match of matchs;let path of Xyzpaths index as i; odd as isOdd; even as isEven"
+        [class.odd]="isOdd" 
+        [class.even]="isEven">
+            <td>{{ match.season }}</td>
+            <td>{{ match.city }}</td>
+            <td>{{ match.date }}</td>
+
+            <td>{{ match.team1 }}</td>
+            <td>{{ match.team2 }}</td>
+            <td>{{ match.winner }}</td>
+            
+            <td>{{ match.venue }}</td>
+
+            
+        </tr>
+    </tbody>
+  </table>
+</div> -->

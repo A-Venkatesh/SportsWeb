@@ -28,18 +28,33 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img width="200" src="http://www.pngall.com/wp-content/uploads/2017/04/Indian-Premier-League.png" />
+  <a routerLink=""><img width="120" src="assets/img/logo.png" /></a>
 
     <div class="spacer"></div>
-  
+
+    
+
+    <!-- <a routerLink="registration" class="nav-link">Sign-Up</a> -->
+    <div>
+        <button mat-button [matMenuTriggerFor]="menu"  style="color: blue">Log In</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Log-In</button>
+          <button mat-menu-item routerLink="registration">Sign-Up</button>
+        </mat-menu>
+    </div>
   
 </div>
+
+
+
+
+
 
 <div>
-  <H1>Skillathon</H1>
+<app-menu></app-menu>
+<div class="spacer"></div>
+<router-outlet></router-outlet>
 </div>
 
 
-
-
-<router-outlet></router-outlet>
+<ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>

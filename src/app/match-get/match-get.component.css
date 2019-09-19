@@ -1,0 +1,5 @@
+.RowColor  {   background-color: rgba(0, 0, 255, 0.349);} 
+.even {   background-color:white; }
+th.mat-sort-header-sorted {
+    color: black;
+  }

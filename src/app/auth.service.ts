@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators'
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +18,13 @@ export class AuthService {
   }
 
   loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user);
+    return this.http.post<any>(this._loginUrl, user).pipe(catchError(this.handleError));
   }
+
+  handleError(error: HttpErrorResponse) {
+    console.log('lalalalalalalala');
+    return throwError(error);
+    }
 
   logoutUser() {
     localStorage.removeItem('token');

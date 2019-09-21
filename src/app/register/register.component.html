@@ -19,7 +19,8 @@
                 <input type="password" [(ngModel)]="registerUserData.Password" name="password" class="form-control rounded-0"  required>
               </div>
               <button type="button" (click)="registerUser()" class="btn btn-primary float-right">Register</button>
-            </form>
+          <h3>{{errorMsg}}</h3>
+          </form>
           </div>
           <!--/card-block-->
         </div>

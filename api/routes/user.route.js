@@ -81,31 +81,71 @@ function verifyToken(req, res, next) {
   req.userId = payload.subject
   next()
 }
+function verify(req, res) {
+  let userData = req.body
+  let user = new User(userData)
 
+    user.save((err, registeredUser) => {
+      console.log("hereee");
+      
+      if (err) {
+        console.log(err)      
+      } else {
+        let payload = {subject: registeredUser._id}
+        let token = jwt.sign(payload, 'secretKey')
+        res.status(200).send({token})
+      }
+    })
+  
 
+}
+let canSave = 1
 userRoutes.post('/register', (req, res) => {
   let userData = req.body
   let user = new User(userData)
-  user.save((err, registeredUser) => {
+  
+  
+
+
+  User.findOne({UserName: userData.UserName}, (err, user) => {
     if (err) {
-      console.log(err)      
+      console.log(err)    
     } else {
-      let payload = {subject: registeredUser._id}
-      let token = jwt.sign(payload, 'secretKey')
-      res.status(200).send({token})
+      if (user!==null) {
+        res.status(400).send('UserName Exist');
+        
+      }
+
+      else {      
+        
+        canSave = 3;
+        console.log('came da ',canSave);
+        verify(req,res)
+       
     }
+    }
+    
   })
+  console.log("55555");
+
+
+  
 })
 
 userRoutes.post('/login', (req, res) => {
   let userData = req.body
-  User.findOne({email: userData.email}, (err, user) => {
+  User.findOne({UserName: userData.UserName}, (err, user) => {
     if (err) {
       console.log(err)    
     } else {
       if (!user) {
         res.status(401).send('Invalid Email')
       } else 
+      {
+        if ( user.UserName !== userData.UserName){    
+          res.status(401).send('Invalid User Name')
+        }
+        else{
       if ( user.Password !== userData.Password) {
         res.status(401).send('Invalid Password')
       } else {
@@ -113,6 +153,8 @@ userRoutes.post('/login', (req, res) => {
         let token = jwt.sign(payload, 'secretKey')
         res.status(200).send({token})
       }
+    }
+    }
     }
   })
 })

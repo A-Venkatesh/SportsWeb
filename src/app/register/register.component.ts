@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { ErrorMsgProviderService } from '../error-msg-provider.service';
 
 @Component({
   selector: 'app-register',
@@ -8,14 +9,15 @@ import { Router } from '@angular/router'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  errorMsg: any;
+  constructor(private _auth: AuthService,
+              private _router: Router,
+              private _emsg: ErrorMsgProviderService) { }
 
   registerUserData = {}
-  constructor(private _auth: AuthService,
-              private _router: Router) { }
 
   ngOnInit() {
   }
-
   registerUser() {
     console.log(this.registerUserData);
     this._auth.registerUser(this.registerUserData)
@@ -24,7 +26,10 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('token', res.token)
         this._router.navigate(['/'])
       },
-      err => console.log(err)
+      err => {
+        this.errorMsg = this._emsg.errorGenerator(err.error);
+        console.log(err)
+      }
     )
   }
 

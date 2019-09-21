@@ -19,6 +19,7 @@
                 <input type="password" class="form-control rounded-0" [(ngModel)]="loginUserData.Password" name="password" required>
               </div>
               <button type="button" (click)="loginUser()" class="btn btn-success float-right">Login</button>
+            <h3>{{errorMsg}}</h3>
             </form>
           </div>
           <!--/card-block-->

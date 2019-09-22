@@ -21,6 +21,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 
 
@@ -29,6 +30,7 @@ import { AuthGuard } from './auth.guard';
   declarations: [
     AppComponent,
     routingComponents,
+    ProfileViewComponent,
 
   ],
   imports: [

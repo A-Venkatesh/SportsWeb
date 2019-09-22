@@ -15,6 +15,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'IPL-Skillathon-Project';
+  user = localStorage.getItem('userName');
   constructor(private loadingBar: SlimLoadingBarService, private router: Router, private _authService: AuthService) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);

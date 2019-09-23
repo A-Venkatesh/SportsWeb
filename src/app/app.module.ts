@@ -13,11 +13,15 @@ import { MaterialModule } from './material.module';
 
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { SignUpService} from './sign-up.service';
 import { MatchsService } from './matchs.service';
 
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 
 
@@ -26,6 +30,7 @@ import { MatchsService } from './matchs.service';
   declarations: [
     AppComponent,
     routingComponents,
+    ProfileViewComponent,
 
   ],
   imports: [
@@ -35,9 +40,15 @@ import { MatchsService } from './matchs.service';
     BrowserAnimationsModule,
     SlimLoadingBarModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [SignUpService, MatchsService],
+  providers: [SignUpService, MatchsService, AuthService, AuthGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

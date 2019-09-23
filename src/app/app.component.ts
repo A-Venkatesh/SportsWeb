@@ -6,6 +6,7 @@ import { NavigationCancel,
   NavigationError,
   NavigationStart,
   Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { NavigationCancel,
 })
 export class AppComponent {
   title = 'IPL-Skillathon-Project';
-  constructor(private loadingBar: SlimLoadingBarService, private router: Router) {
+  user = localStorage.getItem('userName');
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private _authService: AuthService) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });

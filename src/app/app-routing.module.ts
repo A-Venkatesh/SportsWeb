@@ -17,7 +17,6 @@ const routes: Routes = [
   {path: '', component: MatchGetComponent},
   {path: 'menu', component: MenuComponent},
   {path: 'dash', component: DashComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'error', component: ErrorPageComponent},
   {path: 'get', component: MatchGetComponent},
   {path: 'edit/:id', component: MatchEditComponent},

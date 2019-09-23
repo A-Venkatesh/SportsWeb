@@ -26,7 +26,6 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

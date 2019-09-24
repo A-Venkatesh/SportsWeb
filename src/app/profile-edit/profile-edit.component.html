@@ -1,0 +1,53 @@
+<div class="py-5">
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <span class="anchor" id="formLogin"></span>
+      
+            <!-- form card login -->
+            <div class="card rounded-0">
+              <div class="card-header">
+                <h3 class="mb-0">Profile</h3>
+              </div>
+              <div class="card-body">
+           <form >
+                <mat-form-field class="example-full-width">
+                        <input matInput placeholder="First Name" value="" [(ngModel)]="registerUserData.Fname" name="Fname">
+               </mat-form-field>
+            
+             <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" value="" [(ngModel)]="registerUserData.Lname" name="Lname">
+           </mat-form-field>
+         <br>
+                   <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Phone Number" value="" [(ngModel)]="registerUserData.phoneNo" name="phNo">
+                   </mat-form-field>
+                 <br>
+                    <mat-form-field>
+                        <mat-label>Favorite Team</mat-label>
+                        <mat-select [(ngModel)]="registerUserData.fav" name="fav">
+                          <mat-option *ngFor="let team of teams" [value]="team">
+                            {{team}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>            
+                <br>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="registerUserData.DOB" name="dob">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                <br>
+                  
+                  <button type="button" routerLink="/profile" routerLinkactive="active" class="btn btn-primary float-right">Register</button>
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+    

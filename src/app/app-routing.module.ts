@@ -10,6 +10,8 @@ import { MatchEditComponent } from './match-edit/match-edit.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 
 
@@ -30,6 +32,14 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  {
+    path: 'profile',
+    component: ProfileViewComponent
+  },
+  {
+    path: 'profile/edit',
+    component: ProfileEditComponent
+  },
   {path: '**', component: ErrorPageComponent}
 
 ];
@@ -42,5 +52,5 @@ export class AppRoutingModule { }
 
 export const routingComponents = [MenuComponent, DashComponent, ErrorPageComponent,
   MatchAddComponent, MatchEditComponent, MatchGetComponent, SignUpComponent, RegisterComponent,
-  LoginComponent];
+  LoginComponent, ProfileViewComponent, ProfileEditComponent, ];
 

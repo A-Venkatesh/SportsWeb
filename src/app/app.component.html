@@ -40,6 +40,7 @@
         <mat-menu #menu="matMenu">
           <button mat-menu-item *ngIf="!_authService.loggedIn()" routerLink="login">Log-In</button>
           <button mat-menu-item *ngIf="!_authService.loggedIn()" routerLink="register">Sign-Up</button>
+          <button mat-menu-item *ngIf="_authService.loggedIn()" routerLink="profile">Profile</button>
           <button mat-menu-item *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Log-Out</button>
           <button mat-menu-item routerLink="registration">Sign-Up</button>
         </mat-menu>

@@ -9,10 +9,13 @@ export class AuthService {
 
   private _registerUrl = 'http://localhost:4000/users/register';
   private _loginUrl = 'http://localhost:4000/users/login';
+  private _profileUrl = 'http://localhost:4000/profile/edit';
 
   constructor(private http: HttpClient,
               private _router: Router) { }
-
+  registerProfile(profile) {
+    return this.http.post<any>(this._profileUrl, profile);
+  }
   registerUser(user) {
     return this.http.post<any>(this._registerUrl, user);
   }

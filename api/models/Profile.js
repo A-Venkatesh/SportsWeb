@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema for User
-let User = new Schema({
+let Profile = new Schema({
   UserName: {
     type: String
   },

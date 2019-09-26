@@ -9,26 +9,29 @@ import { ErrorMsgProviderService } from '../error-msg-provider.service';
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-  registerUserData = {}
+  registerUserData = {UserName: ''};
   teams: string[] = ['Rising Pune Supergiant', 'Kings XI Punjab', 'Royal Challengers Bangalore',
    'Delhi Daredevils', 'Mumbai Indians', 'Sunrisers Hyderabad', 'Kolkata Knight Riders', 'Chennai Super Kings'] ;
+  errorMsg: string;
    constructor(private _auth: AuthService,
-    private _router: Router,
-    private _emsg: ErrorMsgProviderService) { }
+               private _router: Router,
+               private _emsg: ErrorMsgProviderService) { }
 
   ngOnInit() {
   }
 
   registerUser() {
     console.log(this.registerUserData);
+    this.registerUserData.UserName = localStorage.getItem('userName');
     this._auth.registerProfile(this.registerUserData)
     .subscribe(
       res => {
-        this._router.navigate(['/profile'])
+        this._router.navigate(['/profile']);
       },
       err => {
+        console.log('Inga da');
         this.errorMsg = this._emsg.errorGenerator(err.error);
-        console.log(err)
+        console.log(err);
       }
     )
   }

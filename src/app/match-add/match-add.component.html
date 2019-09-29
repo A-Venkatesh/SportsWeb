@@ -1,1 +1,29 @@
-<p>match-add works!</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Umpire 1" aria-label="Umpire 1" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of umpireFilteredOptions | async" [value]="option" [(ngModel)]="matchData.umpire1" name="umpire1">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Umpire 2" aria-label="Umpire 2" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of umpireFilteredOptions | async" [value]="option" [(ngModel)]="matchData.umpire2" name="umpire2">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    <mat-form-field class="example-full-width">
+       <input matInput placeholder="Player of match" value="" [(ngModel)]="matchData.player_of_match" name="player_of_match">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Won by wicket" value="" [(ngModel)]="matchData.win_by_wickets" name="win_by_wickets">
+     </mat-form-field>
+     <mat-form-field class="example-full-width">
+        <input matInput placeholder="Won by runs" value="" [(ngModel)]="matchData.win_by_runs" name="win_by_runs">
+     </mat-form-field>
+  
+  </form>

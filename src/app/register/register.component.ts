@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
               private _router: Router,
               private _emsg: ErrorMsgProviderService) { }
 
-  registerUserData = {}
+  registerUserData = {UserName: '', Password: '' }
 
   ngOnInit() {
   }
@@ -23,7 +23,9 @@ export class RegisterComponent implements OnInit {
     this._auth.registerUser(this.registerUserData)
     .subscribe(
       res => {
-        localStorage.setItem('token', res.token)
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('userName', this.registerUserData.UserName);
+        console.log(this.registerUserData.UserName, localStorage.getItem('userName'));
         this._router.navigate(['/'])
       },
       err => {

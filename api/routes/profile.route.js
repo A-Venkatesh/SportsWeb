@@ -7,42 +7,67 @@ const jwt = require('jsonwebtoken');
 let Profile = require('../models/Profile');
 
 // Defined store route
+profileRoutes.route('/add').post(function (req, res) {
+  let profile = new Profile(req.body);
+  profile.save()
+    .then(profile => {
+      res.status(200).json({'Profile': 'Profile has been added successfully'});
+    })
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+    });
+});
 
-let canSave = 1
-
-
-profileRoutes.route('/edit').post(function (req, res) {
+// Defined get data(index or listing) route
+profileRoutes.route('/get').post(function (req, res) {
   let profileData = req.body
-  let profile = new Profile(profileData)
-  
+  Profile.findOne({UserName: profileData.UserName}, function (err, profiles){
+    if(err){
+      res.json(profiles);
+      console.log(err);
+    }
+    else {
+      res.json(profiles);
+    }
+  });
+});
 
+// Defined edit route
+profileRoutes.route('/edit/:id').get(function (req, res) {
+  let id = req.params.id;
+  Profile.findById(id, function (err, profile){
+      res.json(profile);
+  });
+});
 
-
-  Profile.findOne({UserName: profileData.UserName}, (err, profile) => {
-    if (err) {
-      console.log('Error da ');
+//  Defined update route
+profileRoutes.route('/update').post(function (req, res) {
+  let profileData = req.body
+  Profile.findOne({UserName: profileData.UserName}, function(err, profile) {
+    if (!profile){
+      console.log(profileData);
       
-      console.log(err)    
-    } else {
-      if (profile==null) {
-        profile.save()
-      .then(profile => {
-        res.status(200).json({'Profile': 'Profile has been added successfully'});
-      })
-      .catch(err => {
-      res.status(400).send("unable to save to database");
-      });
-        
-      }
-
-      else {      
-        profile.id = req.body.id;
+      
+      
+      let profile = new Profile(profileData);
+      console.log(profile);
+  profile.save()
+    .then(profile => {
+      res.status(200).json({'Profile': 'Profile has been added successfully'});
+    })
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+    });
+    }
+    else {
+      
+      profile.id = req.body.id;
         profile.UserName = req.body.UserName;
         profile.Fname = req.body.Fname;
         profile.Lname = req.body.Lname;
-        profile.PhNo = req.body.phNo;
-        profile.Fav = req.body.fav;
-        profile.DOB = req.body.DOB;        
+        profile.PhNo = req.body.PhNo;
+        profile.Fav = req.body.Fav;
+        profile.DOB = req.body.DOB;   
 
       profile.save().then(profile => {
           res.json('Update complete');
@@ -50,8 +75,74 @@ profileRoutes.route('/edit').post(function (req, res) {
       .catch(err => {
             res.status(400).send("unable to update the database");
       });
+    }
+  });
+});
+
+// Defined delete | remove | destroy route
+profileRoutes.route('/delete/:id').get(function (req, res) {
+    Profile.findByIdAndRemove({_id: req.params.id}, function(err, profile){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
+
+
+function verifyToken(req, res, next) {
+  if(!req.headers.authorization) {
+    return res.status(401).send('Unauthorized request')
+  }
+  let token = req.headers.authorization.split(' ')[1]
+  if(token === 'null') {
+    return res.status(401).send('Unauthorized request')    
+  }
+  let payload = jwt.verify(token, 'secretKey')
+  if(!payload) {
+    return res.status(401).send('Unauthorized request')    
+  }
+  req.profileId = payload.subject
+  next()
+}
+function verify(req, res) {
+  let profileData = req.body
+  let profile = new Profile(profileData)
+
+    profile.save((err, registeredProfile) => {
+      console.log("hereee");
+      
+      if (err) {
+        console.log(err)      
+      } else {
+        let payload = {subject: registeredProfile._id}
+        let token = jwt.sign(payload, 'secretKey')
+        res.status(200).send({token})
+      }
+    })
+  
+
+}
+let canSave = 1
+profileRoutes.post('/register', (req, res) => {
+  let profileData = req.body
+  let profile = new Profile(profileData)
+  
+  
+
+
+  Profile.findOne({ProfileName: profileData.ProfileName}, (err, profile) => {
+    if (err) {
+      console.log(err)    
+    } else {
+      if (profile!==null) {
+        res.status(400).send('ProfileName Exist');
+        
+      }
+
+      else {      
+        
         canSave = 3;
         console.log('came da ',canSave);
+        verify(req,res)
        
     }
     }
@@ -65,7 +156,7 @@ profileRoutes.route('/edit').post(function (req, res) {
 
 profileRoutes.post('/login', (req, res) => {
   let profileData = req.body
-  Profile.findOne({UserName: profileData.UserName}, (err, profile) => {
+  Profile.findOne({ProfileName: profileData.ProfileName}, (err, profile) => {
     if (err) {
       console.log(err)    
     } else {
@@ -73,7 +164,7 @@ profileRoutes.post('/login', (req, res) => {
         res.status(401).send('Invalid Email')
       } else 
       {
-        if ( profile.UserName !== profileData.UserName){    
+        if ( profile.ProfileName !== profileData.ProfileName){    
           res.status(401).send('Invalid Profile Name')
         }
         else{

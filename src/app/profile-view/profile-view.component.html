@@ -1,3 +1,40 @@
-
-
-<button type="button" routerLink="/profile/edit" routerLinkactive="active" class="btn btn-primary float-right">Edit Profile</button>
+<div class="py-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <span class="anchor" id="formProfile"></span>
+  
+        <!-- form card profile -->
+        <div class="card rounded-0">
+          <div class="card-header">
+            <h3 class="mb-0">Profile</h3>
+          </div>
+          <div class="card-body">
+       <form >
+        <label >First name</label>
+        <p>{{fullData.Fname}}</p>
+        
+        <label >Last name</label>
+        <p>{{fullData.Lname}}</p>
+     <br>
+     <label >Phone Number</label>
+     <p>{{fullData.PhNo}}</p>
+             <br>
+             <label >Favroite</label>
+             <p>{{fullData.Fav}}</p>           
+            <br>
+            <label >Date of Birth</label>
+            <p>{{fullData.DOB}}</p>  
+            <br>
+              
+             
+<button type="button" routerLink="/profile/edit" routerLinkactive="active" class="btn btn-primary float-right">Edit Profile</button>            </form>
+          </div>
+          <!--/card-block-->
+        </div>
+        <!-- /form card profile -->
+  
+      </div>
+  
+  
+    </div>
+  </div>

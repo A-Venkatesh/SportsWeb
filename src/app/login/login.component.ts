@@ -11,7 +11,7 @@ import { ErrorMsgProviderService } from '../error-msg-provider.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginUserData = {};
+  loginUserData = {UserName: '', Password: '' };
 
   public userID;
   public errorCode = '';
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('userName', this.userID);
-        console.log(this.userID, localStorage.getItem('userName'));
+        localStorage.setItem('userName', this.loginUserData.UserName);
+        console.log(this.loginUserData.UserName, localStorage.getItem('userName'));
 
         this._router.navigate(['/']);
       },

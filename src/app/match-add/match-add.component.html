@@ -15,6 +15,68 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Umpire 3" aria-label="Umpire 3" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of umpireFilteredOptions | async" [value]="option" [(ngModel)]="matchData.umpire3" name="umpire3">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="City" aria-label="City" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of cityFilteredOptions | async" [value]="option" [(ngModel)]="matchData.city" name="city">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="matchData.date" name="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+          
+        <mat-form-field>
+            <mat-label>All seasons</mat-label>
+            <mat-select value="" [(ngModel)]="matchData.seasons" name="seasons">
+        
+              <mat-option *ngFor="let year of years;" value={{year}}>{{year}}</mat-option>
+            
+            </mat-select>
+            
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Team 1</mat-label>
+              <mat-select value="" [(ngModel)]="matchData.team1" name="team1">
+          
+                <mat-option *ngFor="let team of teams;" value={{team}}>{{team}}</mat-option>
+              
+              </mat-select>
+              
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Team 2</mat-label>
+                <mat-select value="" [(ngModel)]="matchData.team2" name="team2">
+            
+                  <mat-option *ngFor="let team of teams;" value={{team}}>{{team}}</mat-option>
+                
+                </mat-select>
+                
+              </mat-form-field>
+              <mat-form-field>
+                  <mat-label>Toss winner</mat-label>
+                  <mat-select value="" (click)="tossedTeam()" [(ngModel)]="matchData.toss_winner" name="toss_winner">
+              
+                    <mat-option *ngFor="let team of playingTeam;" value={{team}}>{{team}}</mat-option>
+                  
+                  </mat-select>
+                  
+                </mat-form-field>
+
     <mat-form-field class="example-full-width">
        <input matInput placeholder="Player of match" value="" [(ngModel)]="matchData.player_of_match" name="player_of_match">
     </mat-form-field>

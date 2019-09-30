@@ -9,7 +9,7 @@ import { ErrorMsgProviderService } from '../error-msg-provider.service';
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-  registerUserData = {UserName: '', DOB: ''};
+  registerUserData = {UserName: '', DOB: '', Fname: '', Lname: '', PhNo: '', Fav: '', DOC: '' };
   teams: string[] = ['Rising Pune Supergiant', 'Kings XI Punjab', 'Royal Challengers Bangalore',
    'Delhi Daredevils', 'Mumbai Indians', 'Sunrisers Hyderabad', 'Kolkata Knight Riders', 'Chennai Super Kings'] ;
   errorMsg: string;

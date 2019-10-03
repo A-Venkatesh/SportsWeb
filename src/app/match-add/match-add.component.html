@@ -1,33 +1,33 @@
 <form class="example-form">
     <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Umpire 1" aria-label="Umpire 1" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text" placeholder="Umpire 1" aria-label="Umpire 1" matInput [formControl]="myControl1" [matAutocomplete]="auto" (click)="doThis()">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of umpireFilteredOptions | async" [value]="option" [(ngModel)]="matchData.umpire1" name="umpire1">
-            {{option}}
+          <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire1" name="umpire1">
+            {{option1}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Umpire 2" aria-label="Umpire 2" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text" placeholder="Umpire 2" aria-label="Umpire 2" matInput [formControl]="myControl1" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of umpireFilteredOptions | async" [value]="option" [(ngModel)]="matchData.umpire2" name="umpire2">
-            {{option}}
+          <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire2" name="umpire2">
+            {{option1}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Umpire 3" aria-label="Umpire 3" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text" placeholder="Umpire 3" aria-label="Umpire 3" matInput [formControl]="myControl1" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of umpireFilteredOptions | async" [value]="option" [(ngModel)]="matchData.umpire3" name="umpire3">
-              {{option}}
+            <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire3" name="umpire3">
+              {{option1}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input type="text" placeholder="City" aria-label="City" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <input type="text" placeholder="City" aria-label="City" matInput [formControl]="myControl2" [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-              <mat-option *ngFor="let option of cityFilteredOptions | async" [value]="option" [(ngModel)]="matchData.city" name="city">
-                {{option}}
+              <mat-option *ngFor="let option2 of cityFilteredOptions | async" [value]="option2" [(ngModel)]="matchData.city" name="city">
+                {{option2}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
@@ -87,5 +87,46 @@
      <mat-form-field class="example-full-width">
         <input matInput placeholder="Won by runs" value="" [(ngModel)]="matchData.win_by_runs" name="win_by_runs">
      </mat-form-field>
+
+     <label id="example-radio-group-label" class="margin" >Toss Decision</label>
+     <mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="matchData.toss_decision">
+  <mat-radio-button value="field">Field</mat-radio-button>
+  <mat-radio-button value="bat">Bat</mat-radio-button>
+</mat-radio-group>
+
+<label id="example-radio-group-label" class="margin" >Result</label>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="margin"
+  [(ngModel)]="matchData.result">
+  <mat-radio-button value="normal">normal</mat-radio-button>
+  <mat-radio-button value="tie">tie</mat-radio-button>
+  <mat-radio-button value="no result">no result</mat-radio-button>
+</mat-radio-group>
+
+<mat-checkbox class="margin" [(ngModel)]="matchData.dl_applied">DL Applied</mat-checkbox>
+
+<mat-form-field>
+  <mat-label>Winner</mat-label>
+  <mat-select value="" (click)="tossedTeam()" [(ngModel)]="matchData.winner" name="winner">
+
+    <mat-option *ngFor="let team of playingTeam;" value={{team}}>{{team}}</mat-option>
   
+  </mat-select>
+  
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+  <input type="text" placeholder="Venue" aria-label="Venue" matInput [formControl]="myControl3" [matAutocomplete]="auto">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option3 of venueFilteredOptions | async" [value]="option3" [(ngModel)]="matchData.venue" name="venue">
+      {{option3}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+  
+<button type="button" (click)="addMatch()" class="btn btn-primary float-right">Add</button>
   </form>

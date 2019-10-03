@@ -13,6 +13,7 @@ export class MatchAddComponent implements OnInit {
 
   matchData = {seasons: '', team1: '', team2: ''};
   umpires: any;
+  umpiresFilter: string[] = [''];
   venues: any;
   cities: any;
   myControl1 = new FormControl();
@@ -59,7 +60,6 @@ doThis() {
       this.years.push(i);
      }
     console.log(this.years);
-    
   }
   _umpireFilter(value: string): string[] {
     const filterValue1 = value.toLowerCase();
@@ -94,6 +94,18 @@ doThis() {
 
   addMatch() {
 console.log(this.matchData);
+
+  }
+
+  onValueChange(a: any, b: any) {
+b.forEach(element => {
+  if (element.toLowerCase().search(a) !== -1) {
+this.umpiresFilter.push(element);
+
+  }
+});
+  }
+  onInitial(c: any){
 
   }
 

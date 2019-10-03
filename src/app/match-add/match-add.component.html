@@ -1,8 +1,9 @@
 <form class="example-form">
     <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Umpire 1" aria-label="Umpire 1" matInput [formControl]="myControl1" [matAutocomplete]="auto" (click)="doThis()">
+        <input matInput placeholder="Umpire 1"  aria-label="Umpire 1" [matAutocomplete]="auto" [(ngModel)]="matchData.umpire1" [formControl]="myControl1" name="umpire1">
+
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire1" name="umpire1">
+          <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" name="umpire1">
             {{option1}}
           </mat-option>
         </mat-autocomplete>
@@ -92,7 +93,7 @@
      <mat-radio-group
   aria-labelledby="example-radio-group-label"
   class="example-radio-group"
-  [(ngModel)]="matchData.toss_decision">
+  [(ngModel)]="matchData.toss_decision" name="toss_decision">
   <mat-radio-button value="field">Field</mat-radio-button>
   <mat-radio-button value="bat">Bat</mat-radio-button>
 </mat-radio-group>
@@ -101,13 +102,13 @@
 <mat-radio-group
   aria-labelledby="example-radio-group-label"
   class="margin"
-  [(ngModel)]="matchData.result">
+  [(ngModel)]="matchData.result" name="result">
   <mat-radio-button value="normal">normal</mat-radio-button>
   <mat-radio-button value="tie">tie</mat-radio-button>
   <mat-radio-button value="no result">no result</mat-radio-button>
 </mat-radio-group>
 
-<mat-checkbox class="margin" [(ngModel)]="matchData.dl_applied">DL Applied</mat-checkbox>
+<mat-checkbox class="margin" [(ngModel)]="matchData.dl_applied" name="dl_applied">DL Applied</mat-checkbox>
 
 <mat-form-field>
   <mat-label>Winner</mat-label>

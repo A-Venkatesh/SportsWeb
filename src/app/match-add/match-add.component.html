@@ -1,15 +1,15 @@
 <form class="example-form">
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Umpire 1"  aria-label="Umpire 1" [matAutocomplete]="auto" [(ngModel)]="matchData.umpire1" [formControl]="myControl1" name="umpire1">
+        <input matInput placeholder="Umpire 1"  aria-label="Umpire 1" [matAutocomplete]="auto"  (click)="onTouchedUmpire()" [formControl]="myControl1" name="umpire1">
 
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" name="umpire1">
+          <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire1" name="umpire1">
             {{option1}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Umpire 2" aria-label="Umpire 2" matInput [formControl]="myControl1" [matAutocomplete]="auto">
+        <input type="text" placeholder="Umpire 2" aria-label="Umpire 2" matInput [formControl]="myControl1" (click)="onTouchedUmpire()" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire2" name="umpire2">
             {{option1}}
@@ -17,7 +17,7 @@
         </mat-autocomplete>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Umpire 3" aria-label="Umpire 3" matInput [formControl]="myControl1" [matAutocomplete]="auto">
+          <input type="text" placeholder="Umpire 3" aria-label="Umpire 3" matInput [formControl]="myControl1" (click)="onTouchedUmpire()" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option1 of umpireFilteredOptions | async" [value]="option1" [(ngModel)]="matchData.umpire3" name="umpire3">
               {{option1}}
@@ -25,7 +25,7 @@
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input type="text" placeholder="City" aria-label="City" matInput [formControl]="myControl2" [matAutocomplete]="auto">
+            <input type="text" placeholder="City" aria-label="City" matInput [formControl]="myControl2" (click)="onTouchedCity()" [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
               <mat-option *ngFor="let option2 of cityFilteredOptions | async" [value]="option2" [(ngModel)]="matchData.city" name="city">
                 {{option2}}
@@ -121,7 +121,7 @@
 </mat-form-field>
 
 <mat-form-field class="example-full-width">
-  <input type="text" placeholder="Venue" aria-label="Venue" matInput [formControl]="myControl3" [matAutocomplete]="auto">
+  <input type="text" placeholder="Venue" aria-label="Venue" matInput [formControl]="myControl3" (click)="onTouchedVenue()" [matAutocomplete]="auto">
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option3 of venueFilteredOptions | async" [value]="option3" [(ngModel)]="matchData.venue" name="venue">
       {{option3}}

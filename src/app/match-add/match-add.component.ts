@@ -1,17 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { forwardRef, HostBinding, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith } from 'rxjs/internal/operators/startWith';
-import { map } from 'rxjs/internal/operators/map';
+import {map, startWith} from 'rxjs/operators';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-match-add',
   templateUrl: './match-add.component.html',
-  styleUrls: ['./match-add.component.css']
+  styleUrls: ['./match-add.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MatchAddComponent),
+      multi: true
+    }
+  ]
 })
 export class MatchAddComponent implements OnInit {
 
-  matchData = {seasons: '', team1: '', team2: ''};
+  matchData = {seasons: '', team1: '', team2: '', date: ''};
   umpires: any;
   umpiresFilter: string[] = [''];
   venues: any;
@@ -26,29 +36,47 @@ export class MatchAddComponent implements OnInit {
   teams: string[] = ['Rising Pune Supergiant', 'Kings XI Punjab', 'Royal Challengers Bangalore', 'Delhi Daredevils',
    'Mumbai Indians', 'Sunrisers Hyderabad', 'Kolkata Knight Riders', 'Chennai Super Kings'] ;
   playingTeam = [];
-  constructor() {
-    this.umpireFilteredOptions = this.myControl1.valueChanges.pipe(
-      startWith(''),
-      map(value1 => this._umpireFilter(value1))
-    );
-    this.cityFilteredOptions = this.myControl2.valueChanges.pipe(
-      startWith(''),
-      map(value2 => this._cityFilter(value2))
-    );
-    this.venueFilteredOptions = this.myControl3.valueChanges.pipe(
-      startWith(''),
-      map(value3 => this._venueFilter(value3))
-    );
+  constructor(private _auth: AuthService,
+              private _router: Router) {
+
   }
+
+  form = new FormGroup({
+    umpire1: new FormControl(this.umpires),
+    umpire2: new FormControl(this.umpires),
+    umpire3: new FormControl(this.umpires),
+    venue: new FormControl(this.venues),
+    city: new FormControl(this.cities),
+  });
 doThis() {
   this.umpires = JSON.parse(localStorage.getItem('umpires'));
-  console.log("came her");
-  
+  console.log('came her');
+
   this.umpireFilteredOptions = this.myControl1.valueChanges.pipe(
     startWith(''),
     map(value1 => this._umpireFilter(value1))
   );
 
+}
+
+onTouchedUmpire() {
+  this.umpireFilteredOptions = this.myControl1.valueChanges.pipe(
+    startWith(''),
+    map(value1 => this._umpireFilter(value1))
+  );
+}
+onTouchedCity() {
+  this.cityFilteredOptions = this.myControl2.valueChanges.pipe(
+    startWith(''),
+    map(value2 => this._cityFilter(value2))
+  );
+
+}
+onTouchedVenue() {
+  this.venueFilteredOptions = this.myControl3.valueChanges.pipe(
+    startWith(''),
+    map(value3 => this._venueFilter(value3))
+  );
 }
   ngOnInit() {
 
@@ -94,6 +122,17 @@ doThis() {
 
   addMatch() {
 console.log(this.matchData);
+const pos = this.matchData.date.indexOf('T');
+this.matchData.date = this.matchData.date.substring(0, pos);
+this._auth.addMatch(this.matchData)
+    .subscribe(
+      res => {
+        this._router.navigate(['/']);
+      },
+      err => {
+        console.log(err);
+      }
+    );
 
   }
 
@@ -105,7 +144,7 @@ this.umpiresFilter.push(element);
   }
 });
   }
-  onInitial(c: any){
+  onInitial(c: any) {
 
   }
 

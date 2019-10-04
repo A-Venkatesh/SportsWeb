@@ -7,9 +7,10 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class AuthService {
 
-  private _registerUrl = 'http://localhost:4000/users/register';
-  private _loginUrl = 'http://localhost:4000/users/login';
+  private _userUrl = 'http://localhost:4000/users/';
   private _profileUrl = 'http://localhost:4000/profile/';
+  private _matchUrl = 'http://localhost:4000/matchs/';
+
 
   constructor(private http: HttpClient,
               private _router: Router) { }
@@ -20,11 +21,14 @@ export class AuthService {
     return this.http.post<any>(this._profileUrl.concat('get'), profile);
   }
   registerUser(user) {
-    return this.http.post<any>(this._registerUrl, user);
+    return this.http.post<any>(this._userUrl.concat('register'), user);
   }
 
   loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user).pipe(catchError(this.handleError));
+    return this.http.post<any>(this._userUrl.concat('login'), user).pipe(catchError(this.handleError));
+  }
+  addMatch(match) {
+    return this.http.post<any>(this._matchUrl.concat('add'), match);
   }
 
   handleError(error: HttpErrorResponse) {

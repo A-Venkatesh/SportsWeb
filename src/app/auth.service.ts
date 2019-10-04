@@ -32,7 +32,6 @@ export class AuthService {
   }
 
   handleError(error: HttpErrorResponse) {
-    console.log('lalalalalalalala');
     return throwError(error);
     }
 

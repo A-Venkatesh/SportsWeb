@@ -43,12 +43,9 @@ value = 2019;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   applyFilter(filterValue: string) {
-    console.log('check');
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   somethingChanged() {
-    console.log(this.selected);
-
     this.applyFilter(this.selected);
   }
 
@@ -68,7 +65,6 @@ value = 2019;
 
 
         this.runCheck(this.matchs);
-        console.log(this.umpires);
         localStorage.setItem('umpires',  JSON.stringify(this.umpires));
         localStorage.setItem('venues', JSON.stringify(this.venues));
         localStorage.setItem('cities', JSON.stringify(this.cities));

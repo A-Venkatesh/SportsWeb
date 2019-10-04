@@ -45,12 +45,7 @@ profileRoutes.route('/update').post(function (req, res) {
   let profileData = req.body
   Profile.findOne({UserName: profileData.UserName}, function(err, profile) {
     if (!profile){
-      console.log(profileData);
-      
-      
-      
       let profile = new Profile(profileData);
-      console.log(profile);
   profile.save()
     .then(profile => {
       res.status(200).json({'Profile': 'Profile has been added successfully'});
@@ -108,8 +103,7 @@ function verify(req, res) {
   let profile = new Profile(profileData)
 
     profile.save((err, registeredProfile) => {
-      console.log("hereee");
-      
+
       if (err) {
         console.log(err)      
       } else {
@@ -141,14 +135,12 @@ profileRoutes.post('/register', (req, res) => {
       else {      
         
         canSave = 3;
-        console.log('came da ',canSave);
         verify(req,res)
        
     }
     }
     
   })
-  console.log("55555");
 
 
   

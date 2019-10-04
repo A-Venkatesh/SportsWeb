@@ -37,7 +37,6 @@ export class ProfileEditComponent implements OnInit {
 
   registerUser() {
     this.registerUserData.UserName = localStorage.getItem('userName');
-    console.log('*****', this.registerUserData);
     if (this.registerUserData.DOB !== '') {
 const pos = this.registerUserData.DOB.indexOf('T');
 this.registerUserData.DOB = this.registerUserData.DOB.substring(0, pos);
@@ -49,7 +48,6 @@ this.registerUserData.DOB = this.registerUserData.DOB.substring(0, pos);
         this._router.navigate(['/profile']);
       },
       err => {
-        console.log('Inga da');
         this.errorMsg = this._emsg.errorGenerator(err.error);
         console.log(err);
       }

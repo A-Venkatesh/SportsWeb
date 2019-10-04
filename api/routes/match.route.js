@@ -7,9 +7,7 @@ let Match = require('../models/Match');
 
 // Defined store route
 matchRoutes.route('/add').post(function (req, res) {
-  let match = new Match(req.body);
-  console.log(match);
-  
+  let match = new Match(req.body);  
   match.save()
     .then(match => {
       res.status(200).json({'Match': 'Match has been added successfully'});

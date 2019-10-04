@@ -86,7 +86,6 @@ function verify(req, res) {
   let user = new User(userData)
 
     user.save((err, registeredUser) => {
-      console.log("hereee");
       
       if (err) {
         console.log(err)      
@@ -119,14 +118,12 @@ userRoutes.post('/register', (req, res) => {
       else {      
         
         canSave = 3;
-        console.log('came da ',canSave);
         verify(req,res)
        
     }
     }
     
   })
-  console.log("55555");
 
 
   

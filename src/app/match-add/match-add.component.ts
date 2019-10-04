@@ -50,7 +50,6 @@ export class MatchAddComponent implements OnInit {
   });
 doThis() {
   this.umpires = JSON.parse(localStorage.getItem('umpires'));
-  console.log('came her');
 
   this.umpireFilteredOptions = this.myControl1.valueChanges.pipe(
     startWith(''),
@@ -87,7 +86,6 @@ onTouchedVenue() {
     for (let i = 2007 ; i < this.yearEnd; i++) {
       this.years.push(i);
      }
-    console.log(this.years);
   }
   _umpireFilter(value: string): string[] {
     const filterValue1 = value.toLowerCase();
@@ -111,11 +109,8 @@ onTouchedVenue() {
 
 
   tossedTeam() {
-    console.log('leave 3');
     if (this.matchData.team1 !== '' && this.matchData.team2 !== '') {
-  console.log('leave one');
   this.playingTeam = [];
-  console.log('leave two');
   this.playingTeam.push(this.matchData.team1, this.matchData.team2);
 }
   }

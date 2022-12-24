@@ -1,2 +1,0 @@
-- name: Auto Approve Dependabot
-  uses: cognitedata/auto-approve-dependabot-action@v2.0.0
